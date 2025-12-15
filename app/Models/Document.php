@@ -11,6 +11,19 @@ class Document extends Model
 
     use SoftDeletes;
 
+    protected $fillable = [
+        'user_id',
+        'reference',
+        'name',
+        'path',
+        'size',
+        'mime',
+        'page_count',
+        'pages',
+        'full_size',
+        'status',
+    ];
+
     public static function generateReference(): string
     {
         do {
@@ -22,5 +35,12 @@ class Document extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'pages' => 'array'
+        ];
     }
 }
