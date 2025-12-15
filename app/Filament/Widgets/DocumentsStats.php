@@ -16,7 +16,7 @@ class DocumentsStats extends BaseWidget
     protected function getCards(): array
     {
         $count = Document::where('user_id', auth()->id())->count();
-        $totalBytes = (int) Document::where('user_id', auth()->id())->sum('size');
+        $totalBytes = (int)Document::where('user_id', auth()->id())->sum('full_size') + (int)Document::where('user_id', auth()->id())->sum('size');
 
         return [
             BaseWidget\Stat::make('Documents', number_format($count, 0, ',', ' '))
