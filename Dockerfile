@@ -39,7 +39,8 @@ RUN docker-php-ext-configure gd \
     zip \
     bcmath \
     intl \
-    mbstring
+    mbstring \
+    exif
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
