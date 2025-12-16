@@ -21,7 +21,7 @@ class DocumentsStats extends BaseWidget
         return [
             BaseWidget\Stat::make('Documents', number_format($count, 0, ',', ' '))
                 ->icon('heroicon-o-document-text'),
-            BaseWidget\Stat::make('Total size', self::formatBytes($totalBytes))
+            BaseWidget\Stat::make('Taille totale', self::formatBytes($totalBytes))
                 ->icon('heroicon-o-folder')
         ];
     }

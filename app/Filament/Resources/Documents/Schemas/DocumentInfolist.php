@@ -11,12 +11,14 @@ class DocumentInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('name')->columnSpanFull(),
+                TextEntry::make('name')->label('Nom')->columnSpanFull(),
                 TextEntry::make('page_count')->label('Pages'),
                 TextEntry::make('full_size')
+                    ->label('Taille totale')
                     ->formatStateUsing(fn($state) => number_format($state / 1000, thousands_separator: ' ') . " KB"),
-                TextEntry::make('reference'),
+                TextEntry::make('reference')->label('Référence'),
                 TextEntry::make('created_at')
+                    ->label('Créé le')
                     ->dateTime()
                     ->placeholder('-'),
             ]);

@@ -17,8 +17,8 @@ class EditDocument extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            ViewAction::make()->icon('heroicon-o-eye')->label('View Document'),
-            DeleteAction::make()->icon('heroicon-o-trash')->label('Delete Document'),
+            ViewAction::make()->icon('heroicon-o-eye')->label('Voir le document'),
+            DeleteAction::make()->icon('heroicon-o-trash')->label('Supprimer le document'),
         ];
     }
 
