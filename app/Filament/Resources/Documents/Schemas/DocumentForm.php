@@ -56,7 +56,7 @@ class DocumentForm
                     ])
                     ->itemLabel(function (array $state, Document $record) {
                         if (empty($state['path']) || empty($record->pages)) {
-                            return 'Page 1';
+                            return 'Nouvelle page';
                         }
                         $pages = collect($record->pages);
                         $index = $pages->search(
@@ -65,7 +65,7 @@ class DocumentForm
                         if ($index !== false) {
                             return 'Page ' . ($index + 1);
                         }
-                        return 'Nouvelle page';
+                        return 'Page';
                     })
                     ->addActionLabel("Ajouter une page")
                     ->deleteAction(
