@@ -14,6 +14,6 @@ class ProcessController extends Controller
         $filename = str($document->name)->slug()->toString() . '.' . $parts[count($parts) - 1];
         return response(Storage::disk('s3')->get($document->path))
             ->header('Content-Type', $document->mime)
-            ->header('Content-Disposition', 'attachment; filename="' . mb_strtolower($filename) . '"');
+            ->header('Content-Disposition', 'inline; filename="' . mb_strtolower($filename) . '"');
     }
 }

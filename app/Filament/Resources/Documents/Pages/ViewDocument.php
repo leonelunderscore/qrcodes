@@ -19,7 +19,7 @@ class ViewDocument extends ViewRecord
     {
         return [
             EditAction::make()
-                ->icon('heroicon-o-pencil-square')->label('Edit Document'),
+                ->icon('heroicon-o-pencil-square')->label('Modifier le document'),
             Action::make('qr')
                 ->action(function (Document $record) {
                     return response()->streamDownload(function () use ($record) {
@@ -32,42 +32,11 @@ class ViewDocument extends ViewRecord
                     }, $record->reference . '.png', ['Content-Type' => 'image/png']);
                 })
                 ->color('info')
-                ->label('Download QR Code')
+                ->label('Télécharger le QR Code')
                 ->icon('heroicon-o-qr-code'),
-            Action::make('download')
-                ->color('success')
-                ->icon('heroicon-o-arrow-down-tray')
-                ->url(fn(Document $record) => route('link', ['reference' => $record->reference]))
-                ->label('Download Document'),
-            DeleteAction::make()->label('Delete Document')->icon('heroicon-o-trash')->before(function (Document $record) {
+            DeleteAction::make()->label('Supprimer le document')->icon('heroicon-o-trash')->before(function (Document $record) {
                 Storage::disk('s3')->delete($record->path);
             }),
-//            Action::make('handle')
-//                ->icon('heroicon-o-document-duplicate')
-//                ->label('Handle Document')
-//                ->visible(fn(Document $record) => in_array($record->status, ['pending', 'failed']))
-//                ->disabled(fn(Document $record) => $record->status === 'processing')
-//                ->action(function (Document $record) {
-//                    // Double vérification pour éviter la race condition
-//                    $record->update(['status' => 'pending']);
-//                    $record->refresh();
-//                    if (in_array($record->status, ['processing', 'completed'])) {
-//                        Notification::make('already_processed')
-//                            ->title('Document already processed')
-//                            ->warning()
-//                            ->body('This document is already being processed or has been completed.')
-//                            ->send();
-//                        return;
-//                    }
-//
-//                    HandleDocument::dispatch($record);
-//
-//                    Notification::make('show')
-//                        ->title('Document handled')
-//                        ->info()
-//                        ->body('The document processing has been scheduled successfully.')
-//                        ->send();
-//                })
         ];
     }
 }

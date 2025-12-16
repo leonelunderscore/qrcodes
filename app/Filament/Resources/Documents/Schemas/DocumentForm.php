@@ -17,11 +17,12 @@ class DocumentForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Nom')
                     ->columnSpanFull()
                     ->required(),
                 FileUpload::make('path')
                     ->visible(fn() => $schema->getOperation() != 'edit')
-                    ->label('File')
+                    ->label('Fichier')
                     ->columnSpanFull()
                     ->acceptedFileTypes(['application/pdf'])
                     ->disk('s3')
@@ -33,12 +34,13 @@ class DocumentForm
                     )
                     ->required(),
                 Repeater::make('pages')
+                    ->label('Pages')
                     ->columnSpanFull()
                     ->visible(fn() => $schema->getOperation() == 'edit')
                     ->schema([
                         FileUpload::make('path')
                             ->visible(fn() => $schema->getOperation() == 'edit')
-                            ->label('File')
+                            ->label('Fichier')
                             ->hiddenLabel()
                             ->columnSpanFull()
                             ->acceptedFileTypes(['application/pdf'])
@@ -62,8 +64,9 @@ class DocumentForm
                         if ($index !== false) {
                             return 'Page ' . ($index + 1);
                         }
-                        return 'Page 1';
+                        return 'Nouvelle page';
                     })
+                    ->addActionLabel("Ajouter une page")
                     ->deleteAction(
                         fn(Action $action) => $action->requiresConfirmation()
                     ),
