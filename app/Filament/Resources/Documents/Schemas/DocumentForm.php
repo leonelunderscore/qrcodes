@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Documents\Schemas;
 
 use App\Models\Document;
+use Asmit\FilamentUpload\Forms\Components\AdvancedFileUpload;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -20,7 +21,7 @@ class DocumentForm
                     ->label('Nom')
                     ->columnSpanFull()
                     ->required(),
-                FileUpload::make('path')
+                AdvancedFileUpload::make('path')
                     ->visible(fn() => $schema->getOperation() != 'edit')
                     ->label('Fichier')
                     ->columnSpanFull()
@@ -38,7 +39,7 @@ class DocumentForm
                     ->columnSpanFull()
                     ->visible(fn() => $schema->getOperation() == 'edit')
                     ->schema([
-                        FileUpload::make('path')
+                        AdvancedFileUpload::make('path')
                             ->visible(fn() => $schema->getOperation() == 'edit')
                             ->label('Fichier')
                             ->hiddenLabel()

@@ -13,7 +13,7 @@ class ListDocuments extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make()->icon('heroicon-o-folder-plus'),
+            CreateAction::make()->icon('heroicon-o-folder-plus')->label('Nouveau document'),
         ];
     }
 }
