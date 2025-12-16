@@ -48,6 +48,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN pecl install swoole-6.1.2 imagick \
     && docker-php-ext-enable swoole imagick
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends qpdf \
+    && rm -rf /var/lib/apt/lists/*
+
 # Set the working directory in the container
 WORKDIR /var/www/html
 
