@@ -29,7 +29,7 @@ class ViewDocument extends ViewRecord
                             ->eye('circle')
                             ->style('round')
                             ->generate(route('link', ['reference' => $record->reference]));
-                    }, $record->reference . '.png', ['Content-Type' => 'image/png']);
+                    }, $record->downloadableName(), ['Content-Type' => 'image/png']);
                 })
                 ->color('info')
                 ->label('Télécharger le QR Code')

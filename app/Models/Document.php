@@ -37,6 +37,11 @@ class Document extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function downloadableName(): string
+    {
+        return str($this->name)->slug()->toString() . '.png';
+    }
+
     protected function casts(): array
     {
         return [
